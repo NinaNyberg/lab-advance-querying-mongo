@@ -53,15 +53,18 @@ limit 10
 
 ### 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies.
 
-<!-- Your Code Goes Here -->
+filter {founded_month: {$gte: 7, $lte: 12}}
+limit 1000
 
 ### 12. All the companies founded before 2000 that have an acquisition amount of more than 10.000.000
 
-<!-- Your Code Goes Here -->
+filter {$and: [{founded_year: {$lt: 2000}}, {"acquisition.price_amount": {$gt: 10000000}}]}
 
 ### 13. All the companies that have been acquired after 2010, order by the acquisition amount, and retrieve only their `name` and `acquisition` field.
 
-<!-- Your Code Goes Here -->
+filter {"acquisition.acquired_year": {$gt: 2010}}
+projection {name: 1, acquisition: 1}
+sort {"acquisitions.price_amount": 1}
 
 ### 14. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
 
